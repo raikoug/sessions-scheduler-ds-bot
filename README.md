@@ -48,6 +48,41 @@ cargo run
 
 The bot registers commands globally at startup. For development you may want to change registration to guild-only in `src/main.rs` to avoid Discord's global command propagation delay.
 
+## Commands
+
+The bot is built and run with standard Cargo commands:
+
+```bash
+cargo check
+cargo test
+cargo run
+```
+
+For a production build:
+
+```bash
+cargo build --release
+```
+
+The release binary will be available at:
+
+```text
+target/release/session_scheduler
+```
+
+## Deploy
+
+Minimal deploy flow:
+
+```bash
+cp .env.example .env
+# set DISCORD_TOKEN and DATABASE_URL
+cargo build --release
+./target/release/session_scheduler
+```
+
+For a fuller Linux deployment with `systemd`, logs, update flow, and backup notes, see [docs/deploy.md](/opt/session_scheduler_ds_bot/docs/deploy.md:1).
+
 ## Database
 
 The bot uses SQLite through SQLx. The initial schema lives in:
