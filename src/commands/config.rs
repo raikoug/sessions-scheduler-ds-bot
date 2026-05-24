@@ -6,11 +6,13 @@ use crate::{Context, Error};
 use super::{guild_id_string, reply_ephemeral};
 
 #[poise::command(slash_command, subcommands("channel"))]
+/// Configurazione amministrativa del bot.
 pub async fn config(ctx: Context<'_>) -> Result<(), Error> {
     reply_ephemeral(ctx, "Configura il bot con `/ss config channel`.").await
 }
 
 #[poise::command(slash_command)]
+/// Imposta il canale dove pubblicare le sessioni schedulate.
 pub async fn channel(
     ctx: Context<'_>,
     #[description = "Canale dove pubblicare le sessioni schedulate"] channel: serenity::ChannelId,

@@ -11,6 +11,7 @@ use crate::{Context, Error};
 use super::{author_id_string, author_name, guild_id_string, reply_ephemeral, Giorno};
 
 #[poise::command(slash_command)]
+/// Aggiunge una disponibilita' tua per un giorno e orario.
 pub async fn ican(
     ctx: Context<'_>,
     #[description = "Giorno: lun, mar, merc, gio, ven, sab, dom"] giorno: Giorno,

@@ -33,6 +33,7 @@ async fn main() -> anyhow::Result<()> {
     let config = Config::from_env()?;
     let db = Db::connect(&config.database_url).await?;
     db.init().await?;
+    let guild_id = config.guild_id;
 
     let framework = poise::Framework::builder()
         .options(poise::FrameworkOptions {
@@ -43,7 +44,18 @@ async fn main() -> anyhow::Result<()> {
             let db = db.clone();
             Box::pin(async move {
                 info!("Logged in as {}", ready.user.name);
-                poise::builtins::register_globally(ctx, &framework.options().commands).await?;
+                if let Some(guild_id) = guild_id {
+                    info!("Registering application commands in guild {}", guild_id);
+                    poise::builtins::register_in_guild(
+                        ctx,
+                        &framework.options().commands,
+                        serenity::GuildId::new(guild_id),
+                    )
+                    .await?;
+                } else {
+                    info!("Registering application commands globally");
+                    poise::builtins::register_globally(ctx, &framework.options().commands).await?;
+                }
                 Ok(Data {
                     db,
                     started_at: Utc::now(),

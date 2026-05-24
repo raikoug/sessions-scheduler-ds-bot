@@ -12,6 +12,7 @@ Subcommands:
 
 ```text
 /ss ican giorno:[lun/mar/merc/gio/ven/sab/dom] start:[HH:MM|HH.MM] end:[HH:MM|HH.MM] ricorrente:[true/false]=false
+/ss help
 /ss list
 /ss remove id:[xxxxxxxx]
 /ss week
@@ -46,7 +47,8 @@ cp .env.example .env
 cargo run
 ```
 
-The bot registers commands globally at startup. For development you may want to change registration to guild-only in `src/main.rs` to avoid Discord's global command propagation delay.
+The bot registers commands globally by default at startup.
+For development, set `GUILD_ID` in `.env` to register commands only in one server and see updates much faster.
 
 ## Commands
 
@@ -69,6 +71,16 @@ The release binary will be available at:
 ```text
 target/release/session_scheduler
 ```
+
+Inside Discord, use `/ss help` for a short personal guide.
+
+If you do not see new commands or updated descriptions immediately, set:
+
+```dotenv
+GUILD_ID=your_discord_server_id
+```
+
+Discord global command updates can take time to propagate, while guild-scoped registration is much faster for development.
 
 ## Deploy
 

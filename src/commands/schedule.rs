@@ -7,6 +7,7 @@ use crate::{Context, Error};
 use super::{author_id_string, author_name, guild_id_string, reply_ephemeral};
 
 #[poise::command(slash_command)]
+/// Fissa una sessione da un overlap ID salvato da un admin.
 pub async fn schedule(
     ctx: Context<'_>,
     #[description = "Numero ottenuto da /ss overlaps eseguito da admin"] id: i64,

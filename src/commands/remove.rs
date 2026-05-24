@@ -9,6 +9,7 @@ use crate::{Context, Error};
 use super::{author_id_string, guild_id_string, reply_ephemeral};
 
 #[poise::command(slash_command)]
+/// Rimuove una disponibilita' usando il suo ID.
 pub async fn remove(
     ctx: Context<'_>,
     #[description = "ID alfanumerico da 8 caratteri della disponibilità"] id: String,

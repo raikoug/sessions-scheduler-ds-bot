@@ -6,6 +6,7 @@ use crate::{Context, Error};
 use super::{author_id_string, guild_id_string, reply_ephemeral};
 
 #[poise::command(slash_command)]
+/// Mostra le tue disponibilita' future salvate.
 pub async fn list(ctx: Context<'_>) -> Result<(), Error> {
     let guild_id = guild_id_string(ctx)?;
     let user_id = author_id_string(ctx);

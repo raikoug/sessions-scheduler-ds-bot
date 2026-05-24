@@ -9,6 +9,7 @@ use crate::{Context, Error};
 use super::{planning_instances, reply_ephemeral};
 
 #[poise::command(slash_command)]
+/// Mostra le disponibilita' della prossima settimana.
 pub async fn week(ctx: Context<'_>) -> Result<(), Error> {
     let now = Utc::now();
     let (planning_week, instances) = planning_instances(ctx, now).await?;

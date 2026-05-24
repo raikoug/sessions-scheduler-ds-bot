@@ -8,6 +8,7 @@ use crate::{Context, Error};
 use super::{author_id_string, author_name, guild_id_string, planning_instances, reply_ephemeral};
 
 #[poise::command(slash_command)]
+/// Calcola gli overlap completi della prossima settimana.
 pub async fn overlaps(ctx: Context<'_>) -> Result<(), Error> {
     let now = Utc::now();
     let guild_id = guild_id_string(ctx)?;

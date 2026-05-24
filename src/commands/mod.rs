@@ -1,5 +1,7 @@
 #[path = "config.rs"]
 pub mod config_cmd;
+#[path = "help.rs"]
+pub mod help_cmd;
 #[path = "ican.rs"]
 pub mod ican_cmd;
 #[path = "list.rs"]
@@ -14,6 +16,7 @@ pub mod schedule_cmd;
 pub mod week_cmd;
 
 pub use config_cmd::config;
+pub use help_cmd::help;
 pub use ican_cmd::ican;
 pub use list_cmd::list;
 pub use overlaps_cmd::overlaps;
@@ -63,12 +66,15 @@ impl Giorno {
 
 #[poise::command(
     slash_command,
-    subcommands("ican", "list", "remove", "week", "overlaps", "schedule", "config")
+    subcommands(
+        "help", "ican", "list", "remove", "week", "overlaps", "schedule", "config"
+    )
 )]
+/// Comandi del bot per disponibilita', overlap e sessioni.
 pub async fn ss(ctx: Context<'_>) -> Result<(), Error> {
     reply_ephemeral(
         ctx,
-        "Usa un sottocomando: `/ss ican`, `/ss list`, `/ss remove`, `/ss week`, `/ss overlaps`, `/ss schedule`.",
+        "Usa un sottocomando: `/ss help`, `/ss ican`, `/ss list`, `/ss remove`, `/ss week`, `/ss overlaps`, `/ss schedule`.",
     )
     .await
 }
