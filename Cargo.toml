@@ -1,0 +1,20 @@
+[package]
+name = "session_scheduler"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.74"
+description = "Discord slash-command bot to schedule tabletop RPG sessions from player availability."
+license = "MIT"
+
+[dependencies]
+anyhow = "1"
+chrono = { version = "0.4", features = ["clock", "serde"] }
+chrono-tz = "0.10"
+dotenvy = "0.15"
+poise = "0.6.2"
+rand = "0.8"
+sqlx = { version = "0.8", features = ["runtime-tokio-rustls", "sqlite", "chrono"] }
+thiserror = "2"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "signal"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
