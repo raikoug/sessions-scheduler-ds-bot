@@ -72,16 +72,25 @@ target/release/session_scheduler
 
 ## Deploy
 
-Minimal deploy flow:
+Recommended deploy flow, using the same segregated layout as the SWADE reference bot:
 
 ```bash
-cp .env.example .env
-# set DISCORD_TOKEN and DATABASE_URL
+sudo useradd --system --create-home --home-dir /home/session_scheduler session_scheduler
+sudo mkdir -p /opt/session_scheduler
+sudo mkdir -p /home/session_scheduler/.session_scheduler
 cargo build --release
-./target/release/session_scheduler
+sudo cp target/release/session_scheduler /opt/session_scheduler/
+sudo cp .env.example /opt/session_scheduler/.env
+sudo editor /opt/session_scheduler/.env
 ```
 
-For a fuller Linux deployment with `systemd`, logs, update flow, and backup notes, see [docs/deploy.md](/opt/session_scheduler_ds_bot/docs/deploy.md:1).
+In the service `.env`, set an absolute SQLite path, for example:
+
+```dotenv
+DATABASE_URL=sqlite:///home/session_scheduler/.session_scheduler/session_scheduler.sqlite
+```
+
+For the full Linux deployment flow with `systemd`, hardening, logs, update flow, and backup notes, see [docs/deploy.md](/opt/session_scheduler_ds_bot/docs/deploy.md:1).
 
 ## Database
 
