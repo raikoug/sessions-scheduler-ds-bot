@@ -1,0 +1,23 @@
+/target
+.env
+.env.local
+.env.*.local
+*.sqlite
+*.sqlite3
+*.db
+*.db-shm
+*.db-wal
+.DS_Store
+.idea/
+.vscode/
+
+# Agent / AI workspace files
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+copilot-instructions.md
+.aider*
+.codex/
+.cursor/
+.roo/
+.windsurf/
